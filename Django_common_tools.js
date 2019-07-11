@@ -44,3 +44,17 @@ function getQueryString(name){
     return '';
 }
 
+// 根据Object(一个类似字典或者说json格式)的数据对象, 将会把key转化为参数名,其值转换为对应值, 生成get字符串
+function generateQuery(dict) {
+    var queryString = "?", count = 1, flag = 0;
+    for (var key in dict) {
+        if (dict[key]) {flag++;}
+        queryString += key + "=" + (dict[key]?dict[key]:'') + (queryNum>count?'&':'');
+        count ++;
+    }
+    if (flag>0){
+        return queryString;
+    } else {
+        return '';
+    }
+}
