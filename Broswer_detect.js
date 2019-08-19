@@ -118,7 +118,7 @@ BrowserDetect.init();
 document.write('你正在使用的是：' + BrowserDetect.browser + ' ' + BrowserDetect.version + ' on ' + BrowserDetect.OS + '!');
 
 
-// 使用User-Agent判断
+// 方法二: 使用User-Agent判断
 var Sys = {};  
 var ua = navigator.userAgent.toLowerCase();  
 var s;  
