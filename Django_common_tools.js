@@ -44,8 +44,8 @@ function getQueryString(name){
     return '';
 }
 
-// 根据Object(一个类似字典或者说json格式)的数据对象, 将会把key转化为参数名,其值转换为对应值, 生成get字符串
-function generateQuery(dict) {
+// 根据Object(一个类似字典或者说json格式)的数据对象, 将会把key转化为参数名,其值转换为对应值, 生成get字符串, queryNum是这个字典的长度
+function generateQuery(dict, queryNum) {
     var queryString = "?", count = 1, flag = 0;
     for (var key in dict) {
         if (dict[key]) {flag++;}
