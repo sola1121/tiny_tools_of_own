@@ -1,6 +1,8 @@
 import hashlib, sys, os
 
 
+md5 = hashlib.md5()
+sha256 = hashlib.sha256()
 switch = 0
 
 try:
@@ -24,27 +26,29 @@ if switch == 0:
     else:
         desktop = "/"
 
-    md5 = hashlib.md5()
-
     app = QApplication(sys.argv)
     file_path, button_type = QFileDialog.getOpenFileName(parent=None, caption="文件", directory=desktop, filter="*(*.*)")
     if file_path and button_type:
         try:
             with open(file_path, 'rb') as file:
                 md5.update(file.read())
-            print("file path: %s\nmd5: %s" %( file_path, md5.hexdigest()) )
+                sha256.update(file.read())
+            print("file path: %s\n" % file_path)
+            print("md5: %s\n" % md5.hexdigest())
+            print("sha256: %s\n" % sha256.hexdigest())
         except Exception as ex:
             print("处理错误", str(ex))
 
 else:
-    path = ""
-
-    md5 = hashlib.md5()
+    path = ""   # 在这里手动输入路径
 
     try: 
         with open(path, 'rb') as file:
             md5.update(file.read())
-        print("file path: %s\nmd5: %s" %( path, md5.hexdigest()) )
+            sha256.update(file.read())
+            print("file path: %s\n" % file_path)
+            print("md5: %s\n" % md5.hexdigest())
+            print("sha256: %s\n" % sha256.hexdigest())
 
     except Exception as ex:
         print("处理出错", str(ex))
