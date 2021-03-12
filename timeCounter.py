@@ -69,7 +69,8 @@ if __name__ == "__main__":
         print("时间到, Good Job 🎶️")
         music_path = choice_music()
         if music_path:
-            subprocess.run(["/usr/bin/celluloid", music_path])
+            print(music_path)
+            subprocess.Popen(["/usr/bin/celluloid", music_path])
         else:
             print('\a'*2, end='')
     except KeyboardInterrupt:
