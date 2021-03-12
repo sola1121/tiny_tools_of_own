@@ -37,7 +37,7 @@ def aim_date() -> datetime.datetime:
     """
     while True:
         try:
-            hours = int(input("规定倒计时小时: "))
+            hours = int(input("规定倒计时(时): "))
         except ValueError:
             print("ERROR! 输入有误.")
             continue
@@ -47,7 +47,7 @@ def aim_date() -> datetime.datetime:
             if is_ok.lower().strip() != 'y':
                 continue
         elif hours < 0:
-            print("当前设定小时数小于0小时\n请重新输入.")
+            print("当前设定小时数小于0小时, 请重新输入.")
             continue
         task_Htime = datetime.timedelta(hours=hours)
         break
@@ -57,16 +57,16 @@ def aim_date() -> datetime.datetime:
 if __name__ == "__main__":
 
     lost_date =  GRE_date - datetime.datetime.now()
-    print("\n剩余天数: ", lost_date.days)
+    print("\n剩余天数 - ", lost_date.days)
 
     try:
         end_date = aim_date()
         while (differ_date := end_date - datetime.datetime.now()):
-            if differ_date.seconds <= 0:
+            if differ_date.total_seconds() <= .0:
                 break
             time.sleep(1)
-            print("任务倒计时 %d:%d" % (round(differ_date.seconds/60-1), differ_date.seconds%60), end='\r')
-        print("到点了 🎶️")
+            print("任务倒计时 ▶ %.0f:%02.0f" % (differ_date.total_seconds()//60, differ_date.total_seconds()%60), end='\r')
+        print("时间到, Good Job 🎶️")
         music_path = choice_music()
         if music_path:
             subprocess.run(["/usr/bin/celluloid", music_path])
