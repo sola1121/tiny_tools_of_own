@@ -1,4 +1,4 @@
-# !/usr/bin/python3
+#!/usr/bin/env python3
 
 # 命令行倒计时, 时间到了将会播放同目录下的音乐文件
 
@@ -76,3 +76,5 @@ if __name__ == "__main__":
         print(" - 中断程序 ")
     finally:
         print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        for _ in range(0, 3, 1):
+            time.sleep(1)
